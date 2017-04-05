@@ -41,10 +41,10 @@ int controller( SIM *s )
 {
   int i;
   static int count = 0;
-  double k_x = 1.0;
-  double b_x = 2.0;
-  double k_r = 1.0;
-  double b_r = 2.0;
+  double k_x = 2.0;
+  double b_x = 2.5;
+  double k_r = 100.0; //100
+  double b_r = 20.0; //20
   double q_minus[N_Q];
   double q_diff[N_Q];
 
@@ -64,17 +64,18 @@ int controller( SIM *s )
     }
   */
 
-  // desired lander position
-  s->lander_x_d[XX] = 0.0;
-  // s->lander_x_d[YY] = 6.0;
-  s->lander_x_d[YY] = 11.0;
-  s->lander_x_d[ZZ] = 4.0;
+  // // desired lander position
+  // s->lander_x_d[XX] = 0.0;
+  // // s->lander_x_d[YY] = 6.0;
+  // s->lander_x_d[YY] = 11.0;
+  // s->lander_x_d[ZZ] = 4.0;
 
-  // desired lander orientation
-  s->lander_q_d[Q0] = 0.70710678118655;
-  s->lander_q_d[Q1] = 0.0;
-  s->lander_q_d[Q2] = 0.0;
-  s->lander_q_d[Q3] = 0.70710678118655;
+  // // desired lander orientation
+  // s->lander_q_d[Q0] = 0.70710678118655;
+  // s->lander_q_d[Q1] = 0.0;
+  // s->lander_q_d[Q2] = 0.0;
+  // s->lander_q_d[Q3] = 0.70710678118655;
+
 
   // lander translational control (PD servo)
   for ( i = 0; i < 3; i++ )
@@ -92,7 +93,8 @@ int controller( SIM *s )
   invert_q( s->lander_q, q_minus );
   compose_q( q_minus, s->lander_q_d, q_diff );
   q_to_rotvec( q_diff, s->rotvec ); 
-  // printf( "%g %g %g %g\n", q_diff[0], q_diff[1], q_diff[2], q_diff[3] );
+
+  printf( "%g %g %g %g\n", s->lander_q_d[0], s->lander_q_d[1], s->lander_q_d[2], s->lander_q_d[3] );
   // printf( "%g %g %g\n", s->rotvec[0], s->rotvec[1], s->rotvec[2] );
 
   // PD servo for orientation

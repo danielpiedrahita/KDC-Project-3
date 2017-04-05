@@ -274,7 +274,7 @@ void init_dynamics( SIM *s )
   if ( ALIEN_NQU > MAX_N_SDFAST_STATE )
     {
       fprintf( stderr, 
-	       "Need to increast MAX_N_SDFAST_STATE (%d) to be at least %d\n",
+	       "Need to increase MAX_N_SDFAST_STATE (%d) to be at least %d\n",
 	       MAX_N_SDFAST_STATE, ALIEN_NQU );
       exit( -1 );
     }
@@ -282,7 +282,7 @@ void init_dynamics( SIM *s )
   if ( LANDER_NQU > MAX_N_SDFAST_STATE )
     {
       fprintf( stderr, 
-	       "Need to increast MAX_N_SDFAST_STATE (%d) to be at least %d\n",
+	       "Need to increase MAX_N_SDFAST_STATE (%d) to be at least %d\n",
 	       MAX_N_SDFAST_STATE, LANDER_NQU );
       exit( -1 );
     }
@@ -340,12 +340,12 @@ void reinit_dynamics( SIM *s )
 
   // initialize alien artifact velocity
   // change w to see how tumbling depends on I
-  sdfast_state[ALIEN_XD] = 0.05;
-  sdfast_state[ALIEN_YD] = 0.02;
-  sdfast_state[ALIEN_ZD] = 0.01;
-  sdfast_state[ALIEN_WX] = 0.3/3;
-  sdfast_state[ALIEN_WY] = 1.0/3;
-  sdfast_state[ALIEN_WZ] = 0.1/3;
+  sdfast_state[ALIEN_XD] = 0.05; //0.05
+  sdfast_state[ALIEN_YD] = 0.02; //0.02
+  sdfast_state[ALIEN_ZD] = 0.01; //0.01
+  sdfast_state[ALIEN_WX] = 0.3/3; //0.3/3
+  sdfast_state[ALIEN_WY] = 1.0/3; //1.0/3
+  sdfast_state[ALIEN_WZ] = 0.1/3; //0.1/3
 
   set_alien_sdfast_state( s, sdfast_state );
 
@@ -353,11 +353,7 @@ void reinit_dynamics( SIM *s )
   sdfast_state[LANDER_X] = 0.0;
   sdfast_state[LANDER_Y] = 11.0;
   sdfast_state[LANDER_Z] = 4.0;
-  /*
-  sdfast_state[LANDER_X] = 6.0;
-  sdfast_state[LANDER_Y] = 11.0;
-  sdfast_state[LANDER_Z] = 2.0;
-  */
+
   // yaw 90 degrees
   q[Q0] = 1.0;
   q[Q1] = 0;
